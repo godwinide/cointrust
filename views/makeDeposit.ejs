@@ -1,0 +1,77 @@
+<div class="main-panel bg-dark">
+    <div class="content bg-dark">
+        <div class="page-inner">
+            <div class="mt-2 mb-4">
+                <h1 class="title1 text-light">Make Payment</h1>
+            </div>
+
+            <div class="row">
+                <div class="col card bg-dark shadow-lg p-4">
+                    <div class="mb-3 text-light">
+                        <h4>You are to make payment of <strong>$<%= amount %></strong> using your preferred mode of
+                            payment
+                            below. Screenshot the proof of payment</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card bg-dark shadow text-light">
+                                <div class="card-body">
+                                    <h4>
+                                        <a style="text-decoration:none;" class="collapsed" data-toggle="collapse"
+                                            data-parent="#accordion" href="#btc">
+                                            <strong>Bitcoin</strong>
+                                            <img src="https://coin.trustuniversalbitcoin.com/home/images/btc.png"
+                                                width="40px;" height="40px;">
+                                        </a>
+                                    </h4>
+                                    <div id="btc" class="panel-collapse collapse">
+                                        <div class="">
+                                            <h4 class="text-light">
+                                                <strong>BTC Address:</strong> bc1qvhk852kpcdzflt9mw9mjpgmy2pr9ymjftampnw
+
+                                                <br /><br />
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br> <br>
+
+                    <div>
+                        <form method="post">
+                            <h5 class="text-light">Upload Payment proof after payment. (Ignore if paid with card).</h5>
+                            <input type="file" name="proof" class="form-control col-lg-4 bg-dark text-light">
+                            <br>
+                            <h5 class="text-light">Payment Mode Used:</h5>
+                            <select name="paymentmethod" class="form-control col-lg-4 bg-dark text-light" required>
+                                <option selected value="bitcoin">Bitcoin</option>
+                            </select>
+                            <br> <br>
+                            <div>
+                                <input type="submit" class="btn btn-light" value="Submit payment">
+                            </div>
+                            <input type="hidden" name="amount" value="<%=amount%>">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <footer class="footer bg-dark text-light">
+        <div class="container-fluid">
+            <div class="text-center row copyright text-align-center">
+                <p>All Rights Reserved &copy; CryptoTrade FX 2022</p>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+</div>

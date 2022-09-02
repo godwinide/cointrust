@@ -1,0 +1,51 @@
+<div class="main-panel bg-dark">
+    <div class="content bg-dark">
+        <div class="page-inner">
+            <div class="mt-2 mb-4">
+                <h1 class="title1 text-light">Make Withrawal</h1>
+            </div>
+
+            <div class="row">
+                <div class="col card bg-dark shadow-lg p-4">
+                    <div>
+                        <form method="post">
+                            <%- include("./partials/messages.ejs")%>
+                                <h5 class="text-light">Payment Mode Used:</h5>
+                                <select name="paymentmethod" class="form-control col-lg-4 bg-dark text-light" required>
+                                    <option selected value="bitcoin">Bitcoin</option>
+                                </select>
+                                <br>
+                                <h5 class="text-light">Amount</h5>
+                                <input type="number" name="amount" readonly value="<%=amount%>"
+                                    class="form-control col-lg-4 bg-dark text-light">
+                                <br>
+                                <h5 class="text-light">Withdrawal PIN</h5>
+                                <input type="number" name="pin" class="form-control col-lg-4 bg-dark text-light">
+                                <br>
+                                <div>
+                                    <input type="submit" class="btn btn-light" value="Submit payment">
+                                </div>
+                                <input type="hidden" name="amount" value="<%=amount%>">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <footer class="footer bg-dark text-light">
+        <div class="container-fluid">
+            <div class="text-center row copyright text-align-center">
+                <p>All Rights Reserved &copy; CryptoTrade FX 2022</p>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+</div>
