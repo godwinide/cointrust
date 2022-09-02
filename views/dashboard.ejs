@@ -21,7 +21,7 @@
                                 <div class="col-9 col-stats">
                                     <div class="numbers">
                                         <p class="card-category">Deposited</p>
-                                        <h4 class="card-title text-light">$<%= req.user.deposited%>
+                                        <h4 class="card-title text-light">$<%= comma(req.user.deposited)%>
                                         </h4>
 
                                     </div>
@@ -43,7 +43,7 @@
                                 <div class="col-9 col-stats">
                                     <div class="numbers">
                                         <p class="card-category">Profit</p>
-                                        <h4 class="card-title text-light">$<%=req.user.profit%>
+                                        <h4 class="card-title text-light">$<%=comma(req.user.profit)%>
                                         </h4>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                 <div class="col-9 col-stats">
                                     <div class="numbers">
                                         <p class="card-category">Bonus</p>
-                                        <h4 class="card-title text-light">$ <%=req.user.bonus%>
+                                        <h4 class="card-title text-light">$ <%=comma(req.user.bonus)%>
                                         </h4>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                 <div class="col-9 col-stats">
                                     <div class="numbers">
                                         <p class="card-category">Ref. Bonus</p>
-                                        <h4 class="card-title text-light">$<%=req.user.refbonus%>
+                                        <h4 class="card-title text-light">$<%=comma(req.user.refbonus)%>
                                         </h4>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                 <div class="col-9 col-stats">
                                     <div class="numbers">
                                         <p class="card-category">Balance</p>
-                                        <h4 class="card-title text-light">$<%=req.user.balance%>
+                                        <h4 class="card-title text-light">$<%=comma(req.user.balance)%>
                                         </h4> <br>
 
                                     </div>
