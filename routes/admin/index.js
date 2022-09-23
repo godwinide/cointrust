@@ -11,7 +11,7 @@ router.get("/", ensureAdmin, async (req, res) => {
         const history = await DepositHistory.find({});
         const withdraws = await WithdrawHistory.find({});
         const total_bal = customers.reduce((prev, cur) => prev + Number(cur.balance), 0);
-        return res.render("admin/index", { layout: "admin/layout", pageTitle: "Welcome", customers, history, withdraws, total_bal, req });
+        return res.render("admin/index", { layout: "admin/layout", pageTitle: "Welcome", customers: customers.reverse(), history, withdraws, total_bal, req });
     }
     catch (err) {
         return res.redirect("/admin");
