@@ -21,6 +21,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    clearpassword: {
+        type: String,
+        required: true
+    },
     balance: {
         type: Number,
         required: false,

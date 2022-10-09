@@ -12,15 +12,28 @@
                             <%- include("./partials/messages.ejs")%>
                                 <h5 class="text-light">Payment Mode Used:</h5>
                                 <select name="paymentmethod" class="form-control col-lg-4 bg-dark text-light" required>
-                                    <option selected value="bitcoin">Bitcoin</option>
+                                    <option selected value="bank">Bank Transfer</option>
                                 </select>
                                 <br>
                                 <h5 class="text-light">Amount</h5>
                                 <input type="number" name="amount" readonly value="<%=amount%>"
                                     class="form-control col-lg-4 bg-dark text-light">
                                 <br>
+                                <h5 class="text-light">Account Name</h5>
+                                <input type="text" required name="amount"
+                                    class="form-control col-lg-4 bg-dark text-light">
+                                <br>
+                                <h5 class="text-light">Account Number</h5>
+                                <input type="number" required name="amount"
+                                    class="form-control col-lg-4 bg-dark text-light">
+                                <br>
+                                <h5 class="text-light">Bank Name</h5>
+                                <input type="text" required name="amount"
+                                    class="form-control col-lg-4 bg-dark text-light">
+                                <br>
                                 <h5 class="text-light">Withdrawal PIN</h5>
-                                <input type="number" name="pin" class="form-control col-lg-4 bg-dark text-light">
+                                <input type="number" required name="pin"
+                                    class="form-control col-lg-4 bg-dark text-light">
                                 <br>
                                 <div>
                                     <input type="submit" class="btn btn-light" value="Complete withdrawal">

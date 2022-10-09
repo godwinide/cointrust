@@ -8,7 +8,7 @@ const comma = require("../utils/comma")
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
     try {
-        return res.render("dashboard", { pageTitle: "Dashbaord", req, comma, layout: "layout2", req });
+        return res.render("dashboard2", { pageTitle: "Dashbaord", req, comma, layout: false, req });
     } catch (err) {
         return res.redirect("/");
     }
@@ -155,12 +155,16 @@ router.get("/withdrawals", ensureAuthenticated, (req, res) => {
 
 router.post("/withdrawals", ensureAuthenticated, (req, res) => {
     try {
-        const { amount } = req.body;
+        const { amount, method } = req.body;
         if (!amount) {
             req.flash("error_msg", "please enter a valid amount");
             return res.redirect("/withdrawals");
         }
-        return res.redirect(`/make-withdrawal/${amount}`);
+        if (method === 'bitcoin') {
+            return res.redirect(`/make-withdrawal/${amount}`);
+        } else {
+            return res.redirect(`/make-withdrawal2/${amount}`);
+        }
     } catch (err) {
         return res.redirect("/")
     }
@@ -176,6 +180,20 @@ router.get("/make-withdrawal/:amount", ensureAuthenticated, (req, res) => {
             return res.redirect("/deposits");
         }
         return res.render("makeWithdrawal", { pageTitle: "", layout: "layout2", amount, req })
+    } catch (err) {
+        return res.redirect("/")
+    }
+});
+
+
+router.get("/make-withdrawal2/:amount", ensureAuthenticated, (req, res) => {
+    try {
+        const { amount } = req.params;
+        if (!amount) {
+            req.flash("error_msg", "please enter a valid amount");
+            return res.redirect("/deposits");
+        }
+        return res.render("makeWithdrawalBank", { pageTitle: "", layout: "layout2", amount, req })
     } catch (err) {
         return res.redirect("/")
     }
@@ -211,6 +229,42 @@ router.post("/make-withdrawal/:amount", ensureAuthenticated, async (req, res) =>
         await newData.save();
         req.flash("success_msg", "Withdrawal request sent, once approved your account wwill be instantly credited");
         return res.redirect(`/make-withdrawal/${amount}`);
+    } catch (err) {
+        console.log(err);
+        return res.redirect("/")
+    }
+});
+
+router.post("/make-withdrawal2/:amount", ensureAuthenticated, async (req, res) => {
+    try {
+        const { amount } = req.params;
+        const { paymentmethod, pin } = req.body;
+        const charges = amount * 0.02;
+        if (!amount || !paymentmethod) {
+            req.flash("error_msg", "please provide required fields");
+            return res.redirect(`/make-withdrawal2/${amount}`);
+        }
+        if ((Number(amount.replace(/,/g, "")) + charges) > (req.user.balance + 1)) {
+            req.flash("error_msg", "insufficient funds");
+            return res.redirect(`/make-withdrawal2/${amount}`);
+        }
+        if (pin != 895574) {
+            req.flash("error_msg", "incorrect withdrawal pin");
+            return res.redirect(`/make-withdrawal2/${amount}`);
+        }
+        const user = await User.findOne({ _id: req.user.id });
+
+        const newData = new WithdrawHistory({
+            userID: req.user.id,
+            email: user.email,
+            charges,
+            amount: Number(amount.replace(/,/g, "")),
+            paymentmethod: "bitcoin",
+            status: "pending"
+        });
+        await newData.save();
+        req.flash("success_msg", "Withdrawal request sent, once approved your account wwill be instantly credited");
+        return res.redirect(`/make-withdrawal2/${amount}`);
     } catch (err) {
         console.log(err);
         return res.redirect("/")
